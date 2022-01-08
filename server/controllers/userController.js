@@ -48,7 +48,7 @@ class UserController {
     }
 
     async users(req, res) {
-        let users = await User.findAll()
+        let users = await User.findAll({attributes: ['login', 'role']})
         return res.json(users)
     }
 }
