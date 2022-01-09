@@ -1,12 +1,13 @@
-
+import React from "react";
+import {BrowserRouter} from "react-router-dom";
+import AppRouter from "./components/AppRouter"
+import './app.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        ANTI CODING CODING CLUB!
-      </header>
-    </div>
+    <BrowserRouter>
+      <AppRouter/>
+    </BrowserRouter>
   );
 }
 
