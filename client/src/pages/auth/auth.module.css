@@ -7,13 +7,51 @@
 }
 
 .fieldset{
-
+    display: flex;
+    flex-direction: column;
     padding: 20px;
-    border: 2px solid #585858; 
+    border: 2px solid #585858;
+}
+
+.head{
+    align-self: center;
+    margin: 0 0 10px 0;
+    user-select: none;
 }
 
 .input{
-    display: flex;
-    flex-direction: column;
     margin: 10px 0 0 0;
+    width: 240px;
+    height: 26px;
+    background-color: rgb(211, 211, 211);
+    padding: 0 10px;
+    
+}
+
+.input:focus{
+    border: 2px solid #585858;
+    outline: 0;
+}
+
+.btns{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 0 0;   
+}
+
+.btn{
+    width: 90px;
+    height: 30px;
+    background-color: #cacaca;
+}
+
+.lnk{
+    text-decoration: none;
+    align-self: center;
+    color: black;
+    font-size: 14px;
+}
+
+.lnk:hover{
+    color: darkred;
 }

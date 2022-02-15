@@ -5,19 +5,25 @@ import Writer from './pages/writer/Writer';
 import Reader from './pages/reader/Reader';
 
 
-export const authRoutes = [
+export const adminRoutes = [
     {
         path: ADMIN_ROUTE,
-        Component: Admin
-    },
+        Component: Admin 
+    }
+]
+
+export const writerRoutes = [
     {
         path: WRITER_ROUTE,
         Component: Writer
-    },
+    }
+]
+
+export const readerRoutes = [
     {
         path: READER_ROUTE,
         Component: Reader
-    },
+    }
 ]
 
 export const publicRoutes = [
