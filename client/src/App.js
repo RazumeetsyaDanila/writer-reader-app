@@ -16,7 +16,7 @@ const App = observer(() => {
         user.setUser(data)
         user.setIsAuth(true)
     })
-}, [])
+}, [user])
 
   return (
     <BrowserRouter>

@@ -69,3 +69,23 @@
     text-align: center;
     margin: 4px 0 0 0;
 }
+
+.modalContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.deleteImg{
+    margin-left: 6px;
+}
+
+.deleteImg:hover{
+    cursor: pointer;
+}
+
+.userString{
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+}

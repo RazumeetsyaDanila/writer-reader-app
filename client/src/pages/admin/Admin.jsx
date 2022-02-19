@@ -5,7 +5,10 @@ import { Context } from './../../index';
 import { Link } from 'react-router-dom';
 import classes from './admin.module.css'
 import { observer } from 'mobx-react-lite';
-import { registration } from './../../http/userAPI';
+import { get_users, admin_registration, delete_user } from './../../http/adminAPI';
+// import { useEffect } from 'react';
+import Modal from '../../components/UI/modal/modal';
+import deleteUser from '../../img/del-btn(min).png';
 
 
 const Admin = observer(() => {
@@ -14,24 +17,47 @@ const Admin = observer(() => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('READER')
+    const [users, setUsers] = useState([])
+
+    const [modal, setModal] = useState(false)
+
+
+    // useEffect(() => {
+    //     get_users().then(data => setUsers(data))
+    // }, [])
 
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
     }
 
+    const getUsersList = async () => {
+        await get_users().then(data => setUsers(data))
+        setModal(true)
+    }
+
+    const userDelete = async (lgn) => {
+        await delete_user(lgn).then(data => alert(data.message))
+        setModal(false)
+    }
+
+    // попытка использовать замыкание
+    // const userDelete = async (lgn) => {
+    //     return async function() {
+    //         await delete_user(lgn).then(data => alert(data.message))
+    //         setModal(false)
+    //     }        
+    // }
+
     const click = async () => {
         try {
-            let data
-            data = await registration(login, password, role)
+            await admin_registration(login, password, role)
             setLogin('')
             setPassword('')
             alert("Новый пользователь успешно зарегистрирован!")
         } catch (e) {
             alert(e.response.data.message)
         }
-
-
     }
 
     return (
@@ -50,10 +76,22 @@ const Admin = observer(() => {
                 </div>
 
                 <button className={classes.btn} onClick={click}>Зарегистрировать</button>
+                <button className={classes.btn} onClick={getUsersList}>Пользователи</button>
             </div>
 
-            <br />
             <Link className={classes.lnk} to={LOGIN_ROUTE} onClick={() => logOut()}>Выйти</Link>
+
+            <Modal visible={modal} setVisible={setModal}>
+                <p>Список пользователей:</p>
+                {users.map(user => <div className={classes.userString} key={user.login}> Логин: {user.login}, Роль: {user.role}
+                    {
+                        user.login !== 'admin' && user.login !== 'reader' && user.login !== 'writer' &&
+                        // <button onClick={userDelete.bind(this, user.login)}>Удалить</button>}</p>)
+                        <img src={deleteUser} alt="" className={classes.deleteImg} onClick={userDelete.bind(this, user.login)} />}</div>)
+                    // <button onClick={userDelete(user.login)}>Удалить</button>}</p>) // попытка использовать замыкание
+                }
+                <button className={classes.btn} onClick={() => setModal(false)}>ОК</button>
+            </Modal>
         </div>
     );
 })

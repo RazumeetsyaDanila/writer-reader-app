@@ -12,7 +12,7 @@ const AppRouter = observer(() => {
 
     // костыль для проверки корректности текущего url, чтобы при некорректном перенаправлялось на страницу логина
     let checkPath = false
-    let current_path = window.location.href.replace('http://localhost:3000/', '')
+    let current_path = window.location.href.replace(process.env.REACT_APP_URL, '')
     if(routes_arr.indexOf(current_path) !== -1) checkPath = true
 
     return (
