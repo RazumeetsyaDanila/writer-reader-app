@@ -13,6 +13,7 @@ import deleteUser from '../../img/del-btn(min).png';
 
 const Admin = observer(() => {
     const { user } = useContext(Context)
+    const userLogin = user.user.login
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
@@ -62,7 +63,7 @@ const Admin = observer(() => {
 
     return (
         <div className={classes.container}>
-            <p className={classes.roleLabel}>ADMIN</p>
+            <p className={classes.roleLabel}>{userLogin}</p>
             <div className={classes.fieldset}>
                 <p className={classes.funcLabel}>Добавление нового пользователя</p>
                 <input className={classes.input} type="text" placeholder='Введите логин' value={login} onChange={e => setLogin(e.target.value)} /><br />
@@ -86,7 +87,6 @@ const Admin = observer(() => {
                 {users.map(user => <div className={classes.userString} key={user.login}> Логин: {user.login}, Роль: {user.role}
                     {
                         user.login !== 'admin' && user.login !== 'reader' && user.login !== 'writer' &&
-                        // <button onClick={userDelete.bind(this, user.login)}>Удалить</button>}</p>)
                         <img src={deleteUser} alt="" className={classes.deleteImg} onClick={userDelete.bind(this, user.login)} />}</div>)
                     // <button onClick={userDelete(user.login)}>Удалить</button>}</p>) // попытка использовать замыкание
                 }

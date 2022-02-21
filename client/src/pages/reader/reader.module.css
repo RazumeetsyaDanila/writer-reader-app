@@ -1,0 +1,62 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 18px;
+    flex-direction: column;
+}
+
+.fieldset{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid #585858;
+    align-items: flex-start;
+    max-width: 95vw;
+}
+
+.roleLabel{
+    margin-bottom: 10px;
+    user-select: none;
+}
+
+.funcLabel{
+    margin-bottom: 10px;
+    user-select: none;
+    align-self: center;
+}
+
+.input{
+    margin: 4px 0 16px 0;
+    width: 280px;
+    height: 64px;
+    background-color: rgb(211, 211, 211);
+    padding: 0 10px;
+    resize: none;
+}
+
+.input:focus{
+    border: 2px solid #585858;
+    outline: 0;
+}
+
+.btn{
+    width: 160px;
+    height: 30px;
+    background-color: #cacaca;
+    cursor: pointer;
+    margin: 4px 0 0 0;
+}
+
+.lnk{
+    text-decoration: none;
+    align-self: center;
+    color: black;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.lnk:hover{
+    color: darkred;
+}
