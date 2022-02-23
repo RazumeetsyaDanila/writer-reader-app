@@ -8,6 +8,7 @@ import { message_create, messages_get, messages_delete } from './../../http/writ
 import Modal from './../../components/UI/modal/modal';
 import deleteImg from '../../img/del-btn(min).png';
 import { observer } from 'mobx-react-lite';
+import InputDel from '../../components/UI/input/InputDel';
 
 const Writer = observer(() => {
     const { user } = useContext(Context)
@@ -54,6 +55,7 @@ const Writer = observer(() => {
         }
     }
 
+
     return (
         <div className={classes.container}>
             <p className={classes.roleLabel}>{Login}</p>
@@ -69,8 +71,9 @@ const Writer = observer(() => {
             <Modal visible={modal} setVisible={setModal}>
                 <p>Мои сообщения:</p>
                 {
-                    messages.map(message => <div className={classes.messageString} key={message.message_id}> Сообщение: {message.message_text}
-                        <img src={deleteImg} alt="" className={classes.deleteImg} onClick={deleteMessage.bind(this, message.message_id)} />
+                    messages.map(message => <div className={classes.messageString} key={message.message_id}> Сообщение: {message.message_text}                        
+                        <img src={deleteImg} alt="" className={classes.deleteImg} onClick={deleteMessage.bind(this, message.message_id)} /> <br />
+                        <InputDel message_id={message.message_id} f_modal={() => setModal(false)}/>
                     </div>)
                 }
                 <button className={classes.btn} onClick={() => setModal(false)}>ОК</button>

@@ -34,7 +34,7 @@ class WriterController {
             const message_id = await db.query("INSERT INTO messages (message_text, message_date) " +
                 "VALUES ($1, current_date) RETURNING message_id", [message]);
 
-            await sequelize.query("INSERT INTO user_message (user_id, message_id) " +
+            await db.query("INSERT INTO user_message (user_id, message_id) " +
                 "VALUES ($1, $2)", [user_id, message_id.rows[0].message_id]);
 
             return res.json({ message: "Сообщение добавлено!" })
@@ -92,9 +92,20 @@ class WriterController {
     async messageDelete(req, res) {
         try {
             const { message_id } = req.body
-            await sequelize.query("DELETE from user_message WHERE message_id = $1 ", [message_id])
-            await sequelize.query("DELETE from messages WHERE message_id = $1", [message_id])
+            await db.query("DELETE from user_message WHERE message_id = $1 ", [message_id])
+            await db.query("DELETE from messages WHERE message_id = $1", [message_id])
             return res.json({ message: "Сообщение " + message_id + " удалено!" })
+        } catch (e) {
+            return res.json(e.message)
+        }
+    }
+    
+    //pg variant
+    async messageUpdate(req, res) {
+        try {
+            const { message_id, new_text } = req.body
+            await db.query("UPDATE messages SET message_text = $1 WHERE message_id = $2 ", [new_text, message_id])
+            return res.json({ message: "Сообщение " + message_id + " изменено!" })
         } catch (e) {
             return res.json(e.message)
         }

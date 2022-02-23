@@ -39,12 +39,29 @@
     outline: 0;
 }
 
+.newInput{
+    margin: 4px 0 16px 0;
+    width: 200px;
+    height: 24px;
+    background-color: rgb(211, 211, 211);
+    padding: 0 10px;
+    resize: none;
+}
+
 .btn{
     width: 160px;
     height: 30px;
     background-color: #cacaca;
     cursor: pointer;
     margin: 4px 0 0 0;
+}
+
+.newBtn{
+    width: 50px;
+    height: 24px;
+    background-color: #cacaca;
+    cursor: pointer;
+    margin: 4px 0 0 10px;
 }
 
 .lnk{
